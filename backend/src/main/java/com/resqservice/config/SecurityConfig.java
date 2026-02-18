@@ -24,7 +24,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/health", "/h2-console/**").permitAll()
-                .anyRequest().permitAll() // TODO: lock down once auth is implemented
+                .anyRequest().authenticated()
             )
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
